@@ -26,6 +26,7 @@ def generate_launch_description():
     ld.add_action(should_record_carla_arg)
     carla_launch_path = (base_path / "launch"/ "recordWaypoints" / "record_waypoint_carla.launch.py").as_posix()
     ld.add_action(LogInfo(msg=f"carla_launch_path: {carla_launch_path}", condition=LaunchConfigurationEquals("carla", "true")))
+    #what does this line do?
     LaunchConfiguration("carla")
 
     carla_launch = IncludeLaunchDescription(
@@ -49,26 +50,7 @@ def generate_launch_description():
             
             condition=LaunchConfigurationEquals("pointonenav", "true")   
     )
-    # ld.add_action(pointonenav_launch)
-
-    # start_navigation = IncludeLaunchDescription(condition=LaunchConfigurationEquals("pointonenav", "true"))
-    ld.add_action(ExecuteProcess(cmd=['curl', '-X', 'POST', 'http://10.0.0.2/api/v1/application/start'],
-                                 output='screen',
-                                 condition=LaunchConfigurationEquals("pointonenav", "true") 
-                                 ))
-
-    deplayed_actions = launch.actions.TimerAction(
-        period=5.0,
-        actions=[pointonenav_launch],
-        condition=LaunchConfigurationEquals("pointonenav", "true") 
-    )
-    ld.add_action(deplayed_actions)
-    
-    # start_navigation.add_action(ExecuteProcess(cmd=['sleep', '5']))
-    # ld.add_action(start_navigation)          
-
-
-    
+   
     """ 
     adding actions for common parameters
     """
