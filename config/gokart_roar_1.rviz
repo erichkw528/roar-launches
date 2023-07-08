@@ -74,7 +74,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        gnss_rear_link:
+        gps_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -366,7 +366,7 @@ Visualization Manager:
               Value: true
             gnss_front_link:
               Value: true
-            gnss_rear_link:
+            gps_link:
               Value: true
             left_lidar:
               Value: true
@@ -411,9 +411,7 @@ Visualization Manager:
                 {}
               compute_units_link:
                 {}
-              gnss_front_link:
-                {}
-              gnss_rear_link:
+              gps_link:
                 {}
               sensor_base_link:
                 center_lidar:

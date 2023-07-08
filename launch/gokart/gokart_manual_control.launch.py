@@ -69,27 +69,32 @@ def generate_launch_description():
         }.items(),
     )
 
-    arduino_comm_node = launch_ros.actions.Node(
-        package="arduino_comm",
-        executable="arduino_comm_node",
+    arduino_comm_path: Path = (
+        Path(get_package_share_directory("arduino_comm"))
+        / "launch"
+        / "arduino.launch.py"
     )
-
-    manual_control_node = launch_ros.actions.Node(
-        package="manual_controller",
-        executable="manual_controller_node",
-        name="rviz2",
-        output="screen",
+    assert arduino_comm_path.exists()
+    arduino_comm = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(arduino_comm_path.as_posix()),
     )
-
+    manual_control_path: Path = (
+        Path(get_package_share_directory("manual_controller"))
+        / "launch"
+        / "manual_control.launch.py"
+    )
+    manual_control = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(manual_control_path.as_posix()),
+    )
     ld = launch.LaunchDescription()
 
     ld.add_action(should_launch_rviz_args)
 
     ld.add_action(rviz_node)
     ld.add_action(zed_launch)
-    ld.add_action(manual_control_node)
+    ld.add_action(manual_control)
     ld.add_action(vehicle_urdf_launch)
-    ld.add_action(arduino_comm_node)
+    ld.add_action(arduino_comm)
     return ld
 
 
