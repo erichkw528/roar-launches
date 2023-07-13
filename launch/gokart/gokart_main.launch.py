@@ -103,7 +103,7 @@ def generate_launch_description():
     # )
 
     manual_control_node = launch_ros.actions.Node(
-        package="manual_controller",
+        package="gokart_manual_controller",
         executable="manual_controller_node",
         name="rviz2",
         output="screen",

@@ -79,7 +79,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(arduino_comm_path.as_posix()),
     )
     manual_control_path: Path = (
-        Path(get_package_share_directory("manual_controller"))
+        Path(get_package_share_directory("gokart_manual_controller"))
         / "launch"
         / "manual_control.launch.py"
     )
