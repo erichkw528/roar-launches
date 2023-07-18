@@ -87,6 +87,9 @@ def generate_launch_description():
     should_launch_visualization = DeclareLaunchArgument('visualization', default_value="False", description="Launch visualization")
     ld.add_action(should_launch_visualization)
 
+    should_launch_manual_control = DeclareLaunchArgument('manual_control', default_value="False", description="Launch manual control")
+    ld.add_action(should_launch_manual_control)
+
     visualization_launch_path: Path = (
         Path(get_package_share_directory("roar-indy-launches"))
         / "launch" / "visualization"
@@ -97,7 +100,10 @@ def generate_launch_description():
     ), f"[{visualization_launch_path}] does not exist"
     visualization_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(visualization_launch_path.as_posix()),
-        condition=IfCondition(LaunchConfiguration('visualization', default=False))  
+        condition=IfCondition(LaunchConfiguration('visualization', default=False)),
+        launch_arguments={
+            "manual_control": LaunchConfiguration('manual_control', default=False)
+        }.items()  
     )
     ld.add_action(visualization_launch)
     ld.add_action(LogInfo(msg=["Visualization launched"], condition=IfCondition(LaunchConfiguration('visualization', default=False))))
