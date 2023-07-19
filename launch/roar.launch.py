@@ -100,13 +100,23 @@ def generate_launch_description():
     ), f"[{visualization_launch_path}] does not exist"
     visualization_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(visualization_launch_path.as_posix()),
-        condition=IfCondition(LaunchConfiguration('visualization', default=False)),
-        launch_arguments={
-            "manual_control": LaunchConfiguration('manual_control', default=False)
-        }.items()  
+        condition=IfCondition(LaunchConfiguration('visualization', default=False))
     )
     ld.add_action(visualization_launch)
     ld.add_action(LogInfo(msg=["Visualization launched"], condition=IfCondition(LaunchConfiguration('visualization', default=False))))
 
+    """
+    Manual control section
+    """
+    manual_control_launch_path: Path = Path(get_package_share_directory("roar_manual_control")) / "launch" / "roar_manual_control.launch.py"
+    assert (
+        manual_control_launch_path.exists()
+    ), f"[{manual_control_launch_path}] does not exist"
+    manual_control_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(manual_control_launch_path.as_posix()),
+        condition=IfCondition(LaunchConfiguration('manual_control', default=False))
+        )
+    ld.add_action(LogInfo(msg=["manual_control launched"], condition=IfCondition(LaunchConfiguration('manual_control', default=False))))
+    ld.add_action(manual_control_launch)
     return ld
     

@@ -15,6 +15,7 @@ from launch.actions import DeclareLaunchArgument
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import TimerAction
+from launch.actions import LogInfo
 
 def generate_launch_description():
     ld = LaunchDescription()
@@ -31,17 +32,8 @@ def generate_launch_description():
     
     should_launch_manual_control = DeclareLaunchArgument('manual_control', default_value="False", description="Launch manual control")
     ld.add_action(should_launch_manual_control)
-    
-    manual_control_launch_path: Path = Path(get_package_share_directory("roar_manual_control")) / "launch" / "manual_control.launch.py"
-    assert (
-        manual_control_launch_path.exists()
-    ), f"[{manual_control_launch_path}] does not exist"
-    manual_control_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(manual_control_launch_path.as_posix()),
-        condition=IfCondition(LaunchConfiguration('manual_control', default=False))
-        )
 
-    delayed_nodes = TimerAction(period=1.0, actions=[rviz_node, manual_control_launch])
+    delayed_nodes = TimerAction(period=1.0, actions=[rviz_node])
 
     ld.add_action(delayed_nodes)
     return ld
