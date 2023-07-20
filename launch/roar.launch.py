@@ -14,6 +14,8 @@ from launch.actions import DeclareLaunchArgument
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import LogInfo
+import time 
+from launch.actions import ExecuteProcess
 
 def generate_launch_description():
     ld = launch.LaunchDescription()
@@ -118,5 +120,32 @@ def generate_launch_description():
         )
     ld.add_action(LogInfo(msg=["manual_control launched"], condition=IfCondition(LaunchConfiguration('manual_control', default=False))))
     ld.add_action(manual_control_launch)
+
+
+    """launch waypoint recording"""
+    should_record_waypoint = DeclareLaunchArgument('should_record_waypoint', default_value="False", description="Launch waypoint recording")
+    ld.add_action(should_record_waypoint)
+    waypoint_recording_launch_path: Path = Path(get_package_share_directory("waypoint_recorder")) / "launch" / "waypoint_recorder.launch.py"
+    assert (
+        waypoint_recording_launch_path.exists()
+    ), f"[{waypoint_recording_launch_path}] does not exist"
+    waypoint_recording_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(waypoint_recording_launch_path.as_posix()),
+        condition=IfCondition(LaunchConfiguration('should_record_waypoint', default=False)),
+        )
+    ld.add_action(LogInfo(msg=["recording waypoint"], condition=IfCondition(LaunchConfiguration('should_record_waypoint', default=False))))
+    ld.add_action(waypoint_recording_launch)
+
+
+    """bag record"""
+    ld.add_action(DeclareLaunchArgument('record', default_value="False", description="record bag file"))
+    default_path = f'./data/bag_{int(time.time())}'
+    ld.add_action(DeclareLaunchArgument("recording_path", default_value=default_path))
+    record_node = ExecuteProcess(cmd=['ros2', 'bag', 'record', '-o', LaunchConfiguration("recording_path"), '-a'], 
+                output='screen', 
+                emulate_tty=True,
+                condition=IfCondition(LaunchConfiguration('record', default=False))
+                )
+    ld.add_action(record_node)
     return ld
     

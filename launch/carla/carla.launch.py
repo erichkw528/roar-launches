@@ -19,9 +19,9 @@ from launch_ros.actions import SetRemap
 
 def generate_launch_description():
     roar_carla_launch_file_path: Path = (
-        Path(get_package_share_directory("roar_carla"))
+        Path(get_package_share_directory("roar_carla_interface"))
         / "launch"
-        / "roar_carla.launch.py"
+        / "roar_carla_with_vehicle.launch.py"
     )
     assert (
         roar_carla_launch_file_path.exists()
