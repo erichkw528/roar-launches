@@ -15,19 +15,19 @@ from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
-    gokart_sensor_bringup_path: Path = (
+    gokart_launches_path: Path = (
         Path(get_package_share_directory("gokart_hardware_launches"))
         / "launch"
-        / "gokart_sensor_bringup.launch.py"
+        / "gokart_hardware_launch_with_auto_control.launch.py"
     )
     assert (
-        gokart_sensor_bringup_path.exists()
-    ), f"[{gokart_sensor_bringup_path}] does not exist"
-    gokart_sensor_bringup = IncludeLaunchDescription(PythonLaunchDescriptionSource(
-            gokart_sensor_bringup_path.as_posix()
+        gokart_launches_path.exists()
+    ), f"[{gokart_launches_path}] does not exist"
+    gokart_launches = IncludeLaunchDescription(PythonLaunchDescriptionSource(
+            gokart_launches_path.as_posix()
         )
     )
     ld = launch.LaunchDescription()
-    ld.add_action(gokart_sensor_bringup)
+    ld.add_action(gokart_launches)
     return ld
     
