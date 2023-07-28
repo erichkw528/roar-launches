@@ -61,5 +61,10 @@ def generate_launch_description():
 
 
     """ Safety Controller """
+    controller_manager_launch_file_path: Path = (Path(get_package_share_directory("controller_manager")) / "launch" / "controller.launch.py")
+    assert controller_manager_launch_file_path.exists(), f"{controller_manager_launch_file_path} does not exist"
+    controller_manager = IncludeLaunchDescription(PythonLaunchDescriptionSource(controller_manager_launch_file_path.as_posix()))
+    ld.add_action(controller_manager)
+    ld.add_action(LogInfo(msg=["Controller Manager launched"]))
     return ld
     
