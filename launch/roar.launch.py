@@ -19,6 +19,13 @@ from launch.actions import ExecuteProcess
 
 def generate_launch_description():
     ld = launch.LaunchDescription()
+    params_file = LaunchConfiguration('params_file')    
+    carla_config_file_path = Path(get_package_share_directory("roar-indy-launches")) / "config" / "carla" / "config.yaml"
+    assert carla_config_file_path.exists(), f"{carla_config_file_path} does not exist"
+    ld.add_action(DeclareLaunchArgument(
+        'params_file',
+        default_value=carla_config_file_path.as_posix(),
+        description='Full path to the ROS2 parameters file to use for all launched nodes'))
 
     """
     Gokart section
@@ -78,7 +85,10 @@ def generate_launch_description():
     ), f"[{core_launch_path}] does not exist"
     core_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(core_launch_path.as_posix()),
-        condition=IfCondition(LaunchConfiguration('core', default=False))  
+        condition=IfCondition(LaunchConfiguration('core', default=False)),
+        launch_arguments={
+            "param_file": params_file
+        }.items()
     )
     ld.add_action(core_launch)
     ld.add_action(LogInfo(msg=["Core launched"], condition=IfCondition(LaunchConfiguration('core', default=False))))
