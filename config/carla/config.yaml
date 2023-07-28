@@ -12,17 +12,14 @@ pointcloud_to_laserscan:
     range_max: 100.0
     use_inf: true
     inf_epsilon: 1.0
-
 costmap_node_manager:
   ros__parameters:
     use_sim_time: True
-
 lifecycle_manager_costmap:
   ros__parameters:
     autostart: true
     node_names: ["/costmap_node_manager"]
-    use_sim_time: true
-    
+    use_sim_time: true 
 local_costmap:
   local_costmap:
     ros__parameters:
@@ -98,7 +95,6 @@ local_costmap:
   local_costmap_rclcpp_node:
     ros__parameters:
       use_sim_time: True
-
 global_costmap:
   global_costmap:
     ros__parameters:
@@ -156,7 +152,6 @@ global_planning_node:
     gnss_file_path: "./data/carla_town04/waypoint.txt"
     next_waypoint_distance_threshold: 10.0
     loop_rate_millis: 100
-
 lifecycle_manager_global_planning:
   ros__parameters:
     autostart: true
