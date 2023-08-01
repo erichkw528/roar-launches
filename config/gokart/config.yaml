@@ -147,7 +147,7 @@ global_costmap:
 ### Global Planner ###
 global_planning_node:
   ros__parameters:
-    debug: true
+    debug: false
     datum: "37.91479456,-122.3342746,0.0"
     gnss_file_path: "./src/launches/launches/config/gokart/waypoint.txt"
     next_waypoint_distance_threshold: 10.0
