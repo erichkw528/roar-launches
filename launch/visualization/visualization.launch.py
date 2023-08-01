@@ -27,7 +27,7 @@ def generate_launch_description():
         executable="rviz2",
         name="rviz2",
         output="screen",
-        arguments=["-d", rviz_path.as_posix()],
+        arguments=["-d", rviz_path.as_posix(), "--log-level" "FATAL"],
     )
     
     should_launch_manual_control = DeclareLaunchArgument('manual_control', default_value="False", description="Launch manual control")
