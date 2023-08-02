@@ -147,7 +147,7 @@ global_costmap:
 ### Global Planner ###
 global_planning_node:
   ros__parameters:
-    debug: true
+    debug: false
     datum: "0.0,0.0,0.0"
     gnss_file_path: "./src/launches/launches/config/carla/waypoint.txt"
     next_waypoint_distance_threshold: 10.0
