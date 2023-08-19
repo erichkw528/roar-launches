@@ -15,11 +15,13 @@ pointcloud_to_laserscan:
 costmap_node_manager:
   ros__parameters:
     use_sim_time: True
+
 lifecycle_manager_costmap:
   ros__parameters:
     autostart: true
     node_names: ["/costmap_node_manager"]
     use_sim_time: true 
+
 local_costmap:
   local_costmap:
     ros__parameters:
@@ -95,6 +97,7 @@ local_costmap:
   local_costmap_rclcpp_node:
     ros__parameters:
       use_sim_time: True
+
 global_costmap:
   global_costmap:
     ros__parameters:
@@ -142,7 +145,6 @@ global_costmap:
   global_costmap_rclcpp_node:
     ros__parameters:
       use_sim_time: True
-
 
 ### Global Planner ###
 global_planner_manager:
