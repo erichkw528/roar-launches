@@ -16,7 +16,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
     gokart_launches_path: Path = (
-        Path(get_package_share_directory("gokart_hardware_launches"))
+        Path(get_package_share_directory("roar_gokart_interface"))
         / "launch"
         / "gokart_hardware_launch_with_auto_control.launch.py"
     )

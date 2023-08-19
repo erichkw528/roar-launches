@@ -15,11 +15,13 @@ pointcloud_to_laserscan:
 costmap_node_manager:
   ros__parameters:
     use_sim_time: True
+
 lifecycle_manager_costmap:
   ros__parameters:
     autostart: true
     node_names: ["/costmap_node_manager"]
     use_sim_time: true 
+
 local_costmap:
   local_costmap:
     ros__parameters:
@@ -95,6 +97,7 @@ local_costmap:
   local_costmap_rclcpp_node:
     ros__parameters:
       use_sim_time: True
+
 global_costmap:
   global_costmap:
     ros__parameters:
@@ -143,20 +146,21 @@ global_costmap:
     ros__parameters:
       use_sim_time: True
 
-
 ### Global Planner ###
-global_planning_node:
+global_planner_manager:
   ros__parameters:
     debug: false
-    datum: "0.0,0.0,0.0"
-    gnss_file_path: "./src/launches/launches/config/carla/waypoint.txt"
-    next_waypoint_distance_threshold: 10.0
-    loop_rate_millis: 100
+    planner_name: "RacePlanner"
+    planner_frequency: 0.1
+    waypoint_path: "./src/launches/launches/config/carla/waypoints.txt"
+    min_dist: 10.0
+
+
 lifecycle_manager_global_planning:
   ros__parameters:
     autostart: true
     use_sim_time: true
-    node_names: ["/global_planning_node"]
+    node_names: ["/global_planner_manager"]
 
 ### Local Planner ###
 local_planner:

@@ -56,7 +56,7 @@ def generate_launch_description():
     # ld.add_action(costmap_manager)
 
     """ Global Planner """
-    global_planner_path = Path(get_package_share_directory("global_planning")) / "launch" / "global_planning.launch.py"
+    global_planner_path = Path(get_package_share_directory("global_planning")) / "launch" / "global_planner_manager.launch.py"
     assert global_planner_path.exists(), f"{global_planner_path} does not exist"
     global_planner_launch = IncludeLaunchDescription(PythonLaunchDescriptionSource(global_planner_path.as_posix()),
         launch_arguments={
