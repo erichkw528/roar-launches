@@ -151,7 +151,7 @@ global_planner_manager:
     planner_name: "RacePlanner"
     planner_frequency: 0.1
     waypoint_path: "./src/launches/launches/config/gokart/waypoints.txt"
-    cross_track_error_list: [[0.5, 5.0], [1.0, 2.0], [5.0, 1.0]]
+    cross_track_error_config: "./src/launches/launches/config/gokart/cte_config.txt"
     min_dist: 10.0
 
 
