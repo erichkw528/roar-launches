@@ -24,7 +24,6 @@ def generate_launch_description():
     assert carla_config_file_path.exists(), f"{carla_config_file_path} does not exist"
     ld.add_action(DeclareLaunchArgument(
         'params_file',
-        default_value=carla_config_file_path.as_posix(),
         description='Full path to the ROS2 parameters file to use for all launched nodes'))
 
     """
