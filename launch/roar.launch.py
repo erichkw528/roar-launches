@@ -156,5 +156,16 @@ def generate_launch_description():
                 condition=IfCondition(LaunchConfiguration('record', default=False))
                 )
     ld.add_action(record_node)
+
+
+    """base station client"""
+    should_launch_base_station = DeclareLaunchArgument('base_station', default_value="True", description="Launch base station")
+    ld.add_action(should_launch_base_station)
+    base_station_launch_path: Path = Path(get_package_share_directory("roar-foxglove-interface")) / "launch" / "main.launch.py"
+    assert base_station_launch_path.exists(), f"{base_station_launch_path} does not exist"
+    base_station_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(base_station_launch_path.as_posix()),
+        condition=IfCondition(LaunchConfiguration('base_station', default=False)))
+    ld.add_action(base_station_launch)
     return ld
     
