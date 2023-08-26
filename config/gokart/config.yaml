@@ -147,10 +147,11 @@ global_costmap:
 ### Global Planner ###
 global_planner_manager:
   ros__parameters:
-    debug: false
+    debug: true
     planner_name: "RacePlanner"
     planner_frequency: 0.1
     waypoint_path: "./src/launches/launches/config/gokart/waypoint.txt"
+    cross_track_error_config: "./src/launches/launches/config/gokart/cross_track_error_config.txt"
     min_dist: 5.0
 
 
