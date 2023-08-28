@@ -167,5 +167,14 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(base_station_launch_path.as_posix()),
         condition=IfCondition(LaunchConfiguration('base_station', default=False)))
     ld.add_action(base_station_launch)
+
+
+    """mapping"""
+    should_launch_mapping = DeclareLaunchArgument('mapping', default_value="False", description="Launch mapping")
+    ld.add_action(should_launch_mapping)
+    mapping_launch_path: Path = Path(get_package_share_directory("roar_mapping")) / "launch" / "mapping.launch.py"
+    assert mapping_launch_path.exists(), f"{mapping_launch_path} does not exist"
+    mapping_launch = IncludeLaunchDescription(PythonLaunchDescriptionSource(mapping_launch_path.as_posix()), condition=IfCondition(LaunchConfiguration('mapping', default=False)))
+    ld.add_action(mapping_launch)
     return ld
     
