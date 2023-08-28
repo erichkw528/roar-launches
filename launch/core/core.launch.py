@@ -39,21 +39,21 @@ def generate_launch_description():
     )
     ld.add_action(urdf_launch)
 
-    # """
-    # Costmap
-    # """
-    # costmap_manager_launch_file_path: Path = (
-    #     Path(get_package_share_directory("costmap_node_manager"))
-    #     / "launch"
-    #     / "costmap_node_manager.launch.py"
-    # )
-    # assert costmap_manager_launch_file_path.exists(), f"{costmap_manager_launch_file_path} does not exist"
-    # costmap_manager = IncludeLaunchDescription(
-    #     PythonLaunchDescriptionSource(costmap_manager_launch_file_path.as_posix()),
-    #     launch_arguments={
-    #         "param_file": params_file
-    #     }.items())
-    # ld.add_action(costmap_manager)
+    """
+    Costmap
+    """
+    costmap_manager_launch_file_path: Path = (
+        Path(get_package_share_directory("costmap_node_manager"))
+        / "launch"
+        / "costmap_node_manager.launch.py"
+    )
+    assert costmap_manager_launch_file_path.exists(), f"{costmap_manager_launch_file_path} does not exist"
+    costmap_manager = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(costmap_manager_launch_file_path.as_posix()),
+        launch_arguments={
+            "param_file": params_file
+        }.items())
+    ld.add_action(costmap_manager)
 
     """ Global Planner """
     global_planner_path = Path(get_package_share_directory("global_planning")) / "launch" / "global_planner_manager.launch.py"
