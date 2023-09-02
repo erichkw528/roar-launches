@@ -179,6 +179,7 @@ lifecycle_manager_local_planning:
 ### Controller ###
 /roar/controller_manager:
   ros__parameters:
+    use_sim_time: true
     manager:
       debug: true
       loop_rate: 30.0
@@ -187,7 +188,7 @@ lifecycle_manager_local_planning:
       max_speed: 10.0
       target_speed: 5.0
 
-    target_speed: 5.0
+    target_speed: 10.0
     base_link_frame: "base_link"
     map_frame: "map"
     min_distance: 10.0
@@ -195,6 +196,16 @@ lifecycle_manager_local_planning:
     plugins:
       - "roar::control::LatPIDControllerPlugin"
       - "roar::control::DummyLonControllerPlugin"
+    
+    lat_control:
+      pid:
+        kd: 0.1
+        ki: 0.1
+        kp: 1.0
+        max_cmd: 30.0
+        min_cmd: -30.0
+        max_i: 10.0
+        min_i: -10.0
 lifecycle_manager_controller:
   ros__parameters:
     autostart: true
