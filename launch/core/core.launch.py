@@ -89,5 +89,16 @@ def generate_launch_description():
         }.items())
     ld.add_action(controller_manager)
     ld.add_action(LogInfo(msg=["Controller Manager launched"]))
+
+
+    """ State Manager """
+    state_manager_launch_file_path: Path = (Path(get_package_share_directory("vehicle_state_manager")) / "launch" / "vehicle_state_manager.launch.py")
+    assert state_manager_launch_file_path.exists(), f"{state_manager_launch_file_path} does not exist"
+    state_manager = IncludeLaunchDescription(PythonLaunchDescriptionSource(state_manager_launch_file_path.as_posix()),
+        launch_arguments={
+            "param_file": params_file
+        }.items())
+    ld.add_action(state_manager)
+    ld.add_action(LogInfo(msg=["State Manager launched"]))
     return ld
     

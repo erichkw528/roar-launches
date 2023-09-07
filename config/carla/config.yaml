@@ -211,3 +211,9 @@ lifecycle_manager_controller:
     autostart: true
     use_sim_time: true
     node_names: ["/roar/controller_manager"]
+
+lifecycle_manager_state_manager:
+  ros__parameters:
+    autostart: true
+    use_sim_time: true
+    node_names: ["/roar/vehicle_state_manager"]
