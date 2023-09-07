@@ -181,7 +181,7 @@ lifecycle_manager_local_planning:
   ros__parameters:
     use_sim_time: true
     manager:
-      debug: true
+      debug: false
       loop_rate: 30.0
     
     planner:
