@@ -6,6 +6,8 @@ Panels:
       Expanded:
         - /Global Options1
         - /Sensor1/Odometry1
+        - /Localization1
+        - /Localization1/TF1
         - /Localization1/TF1/Frames1
         - /Env representation1/LaserScan1
         - /Env representation1/Costmap1
@@ -345,79 +347,79 @@ Visualization Manager:
           Frames:
             All Enabled: false
             antenna_front_left_stand_off:
-              Value: true
+              Value: false
             antenna_front_right_stand_off:
-              Value: true
+              Value: false
             antenna_rear_left_stand_off:
-              Value: true
+              Value: false
             antenna_rear_right_stand_off:
-              Value: true
+              Value: false
             base_link:
               Value: true
             body_frame_link:
-              Value: true
+              Value: false
             camera:
-              Value: true
+              Value: false
             center_lidar:
-              Value: true
+              Value: false
             compute_front_left_stand_off:
-              Value: true
+              Value: false
             compute_front_right_stand_off:
-              Value: true
+              Value: false
             compute_platform:
-              Value: true
+              Value: false
             compute_rear_left_stand_off:
-              Value: true
+              Value: false
             compute_rear_right_stand_off:
-              Value: true
+              Value: false
             compute_units_link:
-              Value: true
-            ego_vehicle:
-              Value: true
-            ego_vehicle/center_lidar:
-              Value: true
-            ego_vehicle/front_depth:
-              Value: true
-            ego_vehicle/front_rgb:
-              Value: true
-            ego_vehicle/gnss_front:
-              Value: true
-            ego_vehicle/gnss_rear:
-              Value: true
-            ego_vehicle/imu:
-              Value: true
+              Value: false
             gnss:
-              Value: true
+              Value: false
             gps_platform:
-              Value: true
+              Value: false
             map:
               Value: true
             odom:
               Value: false
             perception_front_left_stand_off:
-              Value: true
+              Value: false
             perception_front_right_stand_off:
-              Value: true
+              Value: false
             perception_rear_left_stand_off:
-              Value: true
+              Value: false
             perception_rear_right_stand_off:
-              Value: true
+              Value: false
             sensor_platform_lower:
-              Value: true
+              Value: false
             sensor_platform_upper:
-              Value: true
+              Value: false
             wheel_fl_link:
-              Value: true
+              Value: false
             wheel_fl_steer_link:
-              Value: true
+              Value: false
             wheel_fr_link:
-              Value: true
+              Value: false
             wheel_fr_steer_link:
-              Value: true
+              Value: false
             wheel_rl_link:
-              Value: true
+              Value: false
             wheel_rr_link:
-              Value: true
+              Value: false
+            zed2i_base_link:
+              Value: false
+            zed2i_camera_center:
+              Value: false
+            zed2i_imu_link:
+              Value: false
+            zed2i_left_camera_frame:
+              Value: false
+            zed2i_left_camera_optical_frame:
+              Value: false
+            zed2i_right_camera_frame:
+              Value: false
+            zed2i_right_camera_optical_frame:
+              Value: false
           Marker Scale: 10
           Name: TF
           Show Arrows: true
@@ -425,67 +427,62 @@ Visualization Manager:
           Show Names: false
           Tree:
             map:
-              ego_vehicle:
-                base_link:
-                  body_frame_link:
+              base_link:
+                body_frame_link:
+                  {}
+                compute_front_left_stand_off:
+                  {}
+                compute_front_right_stand_off:
+                  {}
+                compute_platform:
+                  antenna_front_left_stand_off:
                     {}
-                  compute_front_left_stand_off:
+                  antenna_front_right_stand_off:
                     {}
-                  compute_front_right_stand_off:
+                  antenna_rear_left_stand_off:
                     {}
-                  compute_platform:
-                    antenna_front_left_stand_off:
+                  antenna_rear_right_stand_off:
+                    {}
+                  compute_units_link:
+                    {}
+                  gps_platform:
+                    gnss:
                       {}
-                    antenna_front_right_stand_off:
-                      {}
-                    antenna_rear_left_stand_off:
-                      {}
-                    antenna_rear_right_stand_off:
-                      {}
-                    compute_units_link:
-                      {}
-                    gps_platform:
-                      gnss:
+                compute_rear_left_stand_off:
+                  {}
+                compute_rear_right_stand_off:
+                  {}
+                perception_front_left_stand_off:
+                  {}
+                perception_front_right_stand_off:
+                  {}
+                perception_rear_left_stand_off:
+                  {}
+                perception_rear_right_stand_off:
+                  {}
+                sensor_platform_lower:
+                  sensor_platform_upper:
+                    center_lidar:
+                      camera:
                         {}
-                  compute_rear_left_stand_off:
+                wheel_fl_steer_link:
+                  wheel_fl_link:
                     {}
-                  compute_rear_right_stand_off:
+                wheel_fr_steer_link:
+                  wheel_fr_link:
                     {}
-                  perception_front_left_stand_off:
-                    {}
-                  perception_front_right_stand_off:
-                    {}
-                  perception_rear_left_stand_off:
-                    {}
-                  perception_rear_right_stand_off:
-                    {}
-                  sensor_platform_lower:
-                    sensor_platform_upper:
-                      center_lidar:
-                        camera:
-                          {}
-                  wheel_fl_steer_link:
-                    wheel_fl_link:
-                      {}
-                  wheel_fr_steer_link:
-                    wheel_fr_link:
-                      {}
-                  wheel_rl_link:
-                    {}
-                  wheel_rr_link:
-                    {}
-                ego_vehicle/center_lidar:
+                wheel_rl_link:
                   {}
-                ego_vehicle/front_depth:
+                wheel_rr_link:
                   {}
-                ego_vehicle/front_rgb:
-                  {}
-                ego_vehicle/gnss_front:
-                  {}
-                ego_vehicle/gnss_rear:
-                  {}
-                ego_vehicle/imu:
-                  {}
+                zed2i_base_link:
+                  zed2i_camera_center:
+                    zed2i_left_camera_frame:
+                      zed2i_left_camera_optical_frame:
+                        {}
+                    zed2i_right_camera_frame:
+                      zed2i_right_camera_optical_frame:
+                        {}
               odom:
                 {}
           Update Interval: 0
@@ -678,25 +675,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 270.637451171875
+      Distance: 10.819644927978516
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 50.649715423583984
-        Y: 40.530120849609375
-        Z: 45.80271911621094
+        X: 27.194637298583984
+        Y: 47.54058837890625
+        Z: 47.6939697265625
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6747961640357971
+      Pitch: 1.1747961044311523
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 4.666367530822754
+      Yaw: 4.771368503570557
     Saved: ~
 Window Geometry:
   Displays:

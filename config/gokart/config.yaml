@@ -147,7 +147,7 @@ global_costmap:
 ### Global Planner ###
 global_planner_manager:
   ros__parameters:
-    debug: true
+    debug: false
     planner_name: "RacePlanner"
     planner_frequency: 0.1
     waypoint_path: "./src/launches/launches/config/gokart/waypoint.txt"
@@ -177,7 +177,7 @@ lifecycle_manager_local_planning:
 ### Controller ###
 /roar/controller_manager:
   ros__parameters:
-    use_sim_time: true
+    use_sim_time: false
     manager:
       debug: true
       loop_rate: 30.0
@@ -186,7 +186,7 @@ lifecycle_manager_local_planning:
       max_speed: 10.0
       target_speed: 5.0
 
-    target_speed: 10.0
+    target_speed: 5.0
     base_link_frame: "base_link"
     map_frame: "map"
     min_distance: 10.0
