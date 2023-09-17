@@ -149,11 +149,16 @@ global_costmap:
 ### Global Planner ###
 /roar/global_planner_manager:
   ros__parameters:
-    debug: false
+    debug: true
     planner_name: "ParkingPlanner"
     planner_frequency: 0.1
-    waypoint_path: "./src/launches/launches/config/carla/waypoints.txt"
-    min_dist: 10.0
+    
+    RacePlanner:
+      waypoint_path: "./src/launches/launches/config/carla/waypoints.txt"
+      min_dist: 10.0
+
+    ParkingPlanner:
+      path_step: 1.0
 
 /roar/map_server:
   ros__parameters:
