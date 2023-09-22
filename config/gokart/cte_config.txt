@@ -1,4 +1,0 @@
-cross_track_error, lookahead distance
-0.5,5.0
-1.0,2.0
-5.0,1.0
