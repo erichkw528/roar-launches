@@ -69,6 +69,22 @@ def generate_launch_description():
     ld.add_action(LogInfo(msg=["carla launched"], condition=IfCondition(LaunchConfiguration('carla', default=False))))
 
     """
+    Manual control section
+    """
+    should_launch_manual_control = DeclareLaunchArgument('manual_control', default_value="False", description="Launch manual control")
+    ld.add_action(should_launch_manual_control)
+    manual_control_launch_path: Path = Path(get_package_share_directory("roar_manual_control")) / "launch" / "roar_manual_control.launch.py"
+    assert (
+        manual_control_launch_path.exists()
+    ), f"[{manual_control_launch_path}] does not exist"
+    manual_control_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(manual_control_launch_path.as_posix()),
+        condition=IfCondition(LaunchConfiguration('manual_control', default=False))
+        )
+    ld.add_action(LogInfo(msg=["manual_control launched"], condition=IfCondition(LaunchConfiguration('manual_control', default=False))))
+    ld.add_action(manual_control_launch)
+
+    """
     Core auto drive section
     """
     should_launch_core = DeclareLaunchArgument('core', default_value="False", description="Launches core auto drive logics")
@@ -86,7 +102,8 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(core_launch_path.as_posix()),
         condition=IfCondition(LaunchConfiguration('core', default=False)),
         launch_arguments={
-            "param_file": params_file
+            "param_file": params_file,
+            "manual_control": LaunchConfiguration('manual_control', default=False)
         }.items()
     )
     ld.add_action(core_launch)
@@ -98,8 +115,7 @@ def generate_launch_description():
     should_launch_visualization = DeclareLaunchArgument('visualization', default_value="False", description="Launch visualization")
     ld.add_action(should_launch_visualization)
 
-    should_launch_manual_control = DeclareLaunchArgument('manual_control', default_value="False", description="Launch manual control")
-    ld.add_action(should_launch_manual_control)
+
 
     visualization_launch_path: Path = (
         Path(get_package_share_directory("roar-indy-launches"))
@@ -115,21 +131,6 @@ def generate_launch_description():
     )
     ld.add_action(visualization_launch)
     ld.add_action(LogInfo(msg=["Visualization launched"], condition=IfCondition(LaunchConfiguration('visualization', default=False))))
-
-    """
-    Manual control section
-    """
-    manual_control_launch_path: Path = Path(get_package_share_directory("roar_manual_control")) / "launch" / "roar_manual_control.launch.py"
-    assert (
-        manual_control_launch_path.exists()
-    ), f"[{manual_control_launch_path}] does not exist"
-    manual_control_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(manual_control_launch_path.as_posix()),
-        condition=IfCondition(LaunchConfiguration('manual_control', default=False))
-        )
-    ld.add_action(LogInfo(msg=["manual_control launched"], condition=IfCondition(LaunchConfiguration('manual_control', default=False))))
-    ld.add_action(manual_control_launch)
-
 
     """launch waypoint recording"""
     should_record_waypoint = DeclareLaunchArgument('should_record_waypoint', default_value="False", description="Launch waypoint recording")

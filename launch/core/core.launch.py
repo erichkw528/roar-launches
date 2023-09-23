@@ -19,7 +19,8 @@ from launch_ros.actions import SetRemap
 
 def generate_launch_description():
     ld = launch.LaunchDescription()
-    params_file = LaunchConfiguration('params_file')    
+    params_file = LaunchConfiguration('params_file')  
+    manual_control = LaunchConfiguration('manual_control', default="False")  
     carla_config_file_path = Path(get_package_share_directory("roar-indy-launches")) / "config" / "carla" / "config.yaml"
     assert carla_config_file_path.exists(), f"{carla_config_file_path} does not exist"
     ld.add_action(DeclareLaunchArgument(
@@ -85,7 +86,8 @@ def generate_launch_description():
     assert controller_manager_launch_file_path.exists(), f"{controller_manager_launch_file_path} does not exist"
     controller_manager = IncludeLaunchDescription(PythonLaunchDescriptionSource(controller_manager_launch_file_path.as_posix()),
         launch_arguments={
-            "param_file": params_file
+            "param_file": params_file,
+            "manual_control": manual_control
         }.items())
     ld.add_action(controller_manager)
     ld.add_action(LogInfo(msg=["Controller Manager launched"]))
@@ -100,5 +102,6 @@ def generate_launch_description():
         }.items())
     ld.add_action(state_manager)
     ld.add_action(LogInfo(msg=["State Manager launched"]))
+
     return ld
     
