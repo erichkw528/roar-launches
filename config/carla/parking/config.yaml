@@ -221,9 +221,14 @@ lifecycle_manager_state_manager:
     use_sim_time: true
     node_names: ["/roar/vehicle_state_manager"]
 
-
-/roar/lifecycle_manager_core:
+/roar/lifecycle_manager_global_planning:
   ros__parameters:
     autostart: true
     use_sim_time: true
-    node_names: ["/roar/global_planner_manager", "/roar/map_server"]
+    node_names: ["/roar/global_planner_manager"]
+
+/roar/lifecycle_manager_map_server:
+  ros__parameters:
+    autostart: true
+    use_sim_time: true
+    node_names: ["/roar/map_server"]

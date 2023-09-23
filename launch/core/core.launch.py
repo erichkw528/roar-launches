@@ -103,17 +103,5 @@ def generate_launch_description():
     ld.add_action(state_manager)
     ld.add_action(LogInfo(msg=["State Manager launched"]))
 
-
-
-    """ Lifecycle Manager """
-    lifecycle_manager = Node(
-        package="nav2_lifecycle_manager",
-        executable="lifecycle_manager",
-        name="lifecycle_manager_core",
-        output="screen",
-        namespace="roar",
-        parameters=[launch.substitutions.LaunchConfiguration("params_file")],
-    )
-    ld.add_action(lifecycle_manager)
     return ld
     
