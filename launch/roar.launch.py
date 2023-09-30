@@ -101,7 +101,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(core_launch_path.as_posix()),
         condition=IfCondition(LaunchConfiguration('core', default=False)),
         launch_arguments={
-            "param_file": params_file,
+            "params_file": params_file,
             "manual_control": LaunchConfiguration('manual_control', default=False)
         }.items()
     )

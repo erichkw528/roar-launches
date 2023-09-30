@@ -21,11 +21,8 @@ def generate_launch_description():
     ld = launch.LaunchDescription()
     params_file = LaunchConfiguration('params_file')  
     manual_control = LaunchConfiguration('manual_control', default="False")  
-    carla_config_file_path = Path(get_package_share_directory("roar-indy-launches")) / "config" / "carla" / "config.yaml"
-    assert carla_config_file_path.exists(), f"{carla_config_file_path} does not exist"
     ld.add_action(DeclareLaunchArgument(
         'params_file',
-        default_value=carla_config_file_path.as_posix(),
         description='Full path to the ROS2 parameters file to use for all launched nodes'))
 
     """ URDF """
@@ -52,7 +49,7 @@ def generate_launch_description():
     costmap_manager = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(costmap_manager_launch_file_path.as_posix()),
         launch_arguments={
-            "param_file": params_file
+            "params_file": params_file
         }.items())
     ld.add_action(costmap_manager)
 
@@ -61,7 +58,7 @@ def generate_launch_description():
     assert global_planner_path.exists(), f"{global_planner_path} does not exist"
     global_planner_launch = IncludeLaunchDescription(PythonLaunchDescriptionSource(global_planner_path.as_posix()),
         launch_arguments={
-            "param_file": params_file
+            "params_file": params_file
         }.items())
     ld.add_action(global_planner_launch)
     
@@ -76,7 +73,7 @@ def generate_launch_description():
             local_planner_manager_launch_file_path.as_posix()
         ),
         launch_arguments={
-            "param_file": params_file
+            "params_files": params_file
         }.items())
     ld.add_action(local_planner_manager)
 
@@ -86,7 +83,7 @@ def generate_launch_description():
     assert controller_manager_launch_file_path.exists(), f"{controller_manager_launch_file_path} does not exist"
     controller_manager = IncludeLaunchDescription(PythonLaunchDescriptionSource(controller_manager_launch_file_path.as_posix()),
         launch_arguments={
-            "param_file": params_file,
+            "params_file": params_file,
             "manual_control": manual_control
         }.items())
     ld.add_action(controller_manager)
@@ -98,7 +95,7 @@ def generate_launch_description():
     assert state_manager_launch_file_path.exists(), f"{state_manager_launch_file_path} does not exist"
     state_manager = IncludeLaunchDescription(PythonLaunchDescriptionSource(state_manager_launch_file_path.as_posix()),
         launch_arguments={
-            "param_file": params_file
+            "params_file": params_file
         }.items())
     ld.add_action(state_manager)
     ld.add_action(LogInfo(msg=["State Manager launched"]))
