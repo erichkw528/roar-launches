@@ -20,8 +20,7 @@ from launch.actions import ExecuteProcess
 def generate_launch_description():
     ld = launch.LaunchDescription()
     params_file = LaunchConfiguration('params_file')    
-    carla_config_file_path = Path(get_package_share_directory("roar-indy-launches")) / "config" / "carla" / "config.yaml"
-    assert carla_config_file_path.exists(), f"{carla_config_file_path} does not exist"
+    
     ld.add_action(DeclareLaunchArgument(
         'params_file',
         description='Full path to the ROS2 parameters file to use for all launched nodes'))
