@@ -147,11 +147,12 @@ global_costmap:
 ### Global Planner ###
 /roar/global_planner_manager:
   ros__parameters:
-    debug: true
+    debug: false
     planner_name: "RacePlanner"
     planner_frequency: 0.1
-    waypoint_path: "./src/launches/launches/config/gokart/racing/waypoint.txt"
-    min_dist: 5.0
+    
+    RacePlanner:
+      waypoint_path: "./src/launches/launches/config/gokart/racing/waypoint.txt"
 
 
 /roar/lifecycle_manager_global_planning:
