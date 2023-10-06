@@ -149,7 +149,7 @@ global_costmap:
 ### Global Planner ###
 /roar/global_planner_manager:
   ros__parameters:
-    debug: true
+    debug: false
     planner_name: "ParkingPlanner"
     planner_frequency: 0.1
 
@@ -185,9 +185,8 @@ lifecycle_manager_local_planning:
     
     planner:
       max_speed: 10.0
-      target_speed: 5.0
+      target_speed: 1.0
 
-    target_speed: 10.0
     base_link_frame: "base_link"
     map_frame: "map"
     min_distance: 10.0
