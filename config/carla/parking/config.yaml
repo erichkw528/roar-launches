@@ -206,7 +206,7 @@ lifecycle_manager_local_planning:
       pid:
         kd: 0.1
         ki: 0.1
-        kp: 1.0
+        kp: 0.5
         max_cmd: 30.0
         min_cmd: -30.0
         max_i: 10.0
