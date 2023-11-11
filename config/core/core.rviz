@@ -8,9 +8,10 @@ Panels:
         - /Sensor1/Odometry1
         - /Localization1/TF1
         - /Localization1/TF1/Frames1
+        - /GlobalPlanning1
+        - /GlobalPlanning1/Next Waypoint Pose1
         - /Env representation1/LaserScan1
         - /Env representation1/Costmap1
-        - /Mapping1
         - /Mapping1/Map1
       Splitter Ratio: 0.39679715037345886
     Tree Height: 421
@@ -202,6 +203,143 @@ Visualization Manager:
             Expand Link Details: false
             Expand Tree: false
             Link Tree Style: Links in Alphabetic Order
+            antenna_front_left_stand_off:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            antenna_front_right_stand_off:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            antenna_rear_left_stand_off:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            antenna_rear_right_stand_off:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            base_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            body_frame_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            camera:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            center_lidar:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            compute_front_left_stand_off:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            compute_front_right_stand_off:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            compute_platform:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            compute_rear_left_stand_off:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            compute_rear_right_stand_off:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            compute_units_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            gnss:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            gps_platform:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            perception_front_left_stand_off:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            perception_front_right_stand_off:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            perception_rear_left_stand_off:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            perception_rear_right_stand_off:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            sensor_platform_lower:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            sensor_platform_upper:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            wheel_fl_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            wheel_fl_steer_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            wheel_fr_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            wheel_fr_steer_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+            wheel_rl_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
+            wheel_rr_link:
+              Alpha: 1
+              Show Axes: false
+              Show Trail: false
+              Value: true
           Name: RobotModel
           TF Prefix: ""
           Update Interval: 0
@@ -212,26 +350,80 @@ Visualization Manager:
           Frame Timeout: 15
           Frames:
             All Enabled: false
+            antenna_front_left_stand_off:
+              Value: true
+            antenna_front_right_stand_off:
+              Value: true
+            antenna_rear_left_stand_off:
+              Value: true
+            antenna_rear_right_stand_off:
+              Value: true
             base_link:
               Value: true
-            ego_vehicle:
+            body_frame_link:
               Value: true
-            ego_vehicle/center_lidar:
+            camera:
               Value: true
-            ego_vehicle/front_depth:
+            center_lidar:
               Value: true
-            ego_vehicle/front_rgb:
+            compute_front_left_stand_off:
               Value: true
-            ego_vehicle/gnss_front:
+            compute_front_right_stand_off:
               Value: true
-            ego_vehicle/gnss_rear:
+            compute_platform:
               Value: true
-            ego_vehicle/imu:
+            compute_rear_left_stand_off:
+              Value: true
+            compute_rear_right_stand_off:
+              Value: true
+            compute_units_link:
+              Value: true
+            gnss:
+              Value: true
+            gps_platform:
               Value: true
             map:
               Value: true
             odom:
               Value: false
+            perception_front_left_stand_off:
+              Value: true
+            perception_front_right_stand_off:
+              Value: true
+            perception_rear_left_stand_off:
+              Value: true
+            perception_rear_right_stand_off:
+              Value: true
+            sensor_platform_lower:
+              Value: true
+            sensor_platform_upper:
+              Value: true
+            wheel_fl_link:
+              Value: true
+            wheel_fl_steer_link:
+              Value: true
+            wheel_fr_link:
+              Value: true
+            wheel_fr_steer_link:
+              Value: true
+            wheel_rl_link:
+              Value: true
+            wheel_rr_link:
+              Value: true
+            zed2i_base_link:
+              Value: true
+            zed2i_camera_center:
+              Value: true
+            zed2i_imu_link:
+              Value: true
+            zed2i_left_camera_frame:
+              Value: true
+            zed2i_left_camera_optical_frame:
+              Value: true
+            zed2i_right_camera_frame:
+              Value: true
+            zed2i_right_camera_optical_frame:
+              Value: true
           Marker Scale: 10
           Name: TF
           Show Arrows: true
@@ -239,21 +431,64 @@ Visualization Manager:
           Show Names: false
           Tree:
             map:
-              ego_vehicle:
-                base_link:
+              base_link:
+                body_frame_link:
                   {}
-                ego_vehicle/center_lidar:
+                compute_front_left_stand_off:
                   {}
-                ego_vehicle/front_depth:
+                compute_front_right_stand_off:
                   {}
-                ego_vehicle/front_rgb:
+                compute_platform:
+                  antenna_front_left_stand_off:
+                    {}
+                  antenna_front_right_stand_off:
+                    {}
+                  antenna_rear_left_stand_off:
+                    {}
+                  antenna_rear_right_stand_off:
+                    {}
+                  compute_units_link:
+                    {}
+                  gps_platform:
+                    gnss:
+                      {}
+                compute_rear_left_stand_off:
                   {}
-                ego_vehicle/gnss_front:
+                compute_rear_right_stand_off:
                   {}
-                ego_vehicle/gnss_rear:
+                perception_front_left_stand_off:
                   {}
-                ego_vehicle/imu:
+                perception_front_right_stand_off:
                   {}
+                perception_rear_left_stand_off:
+                  {}
+                perception_rear_right_stand_off:
+                  {}
+                sensor_platform_lower:
+                  sensor_platform_upper:
+                    center_lidar:
+                      camera:
+                        {}
+                wheel_fl_steer_link:
+                  wheel_fl_link:
+                    {}
+                wheel_fr_steer_link:
+                  wheel_fr_link:
+                    {}
+                wheel_rl_link:
+                  {}
+                wheel_rr_link:
+                  {}
+                zed2i_base_link:
+                  zed2i_camera_center:
+                    zed2i_left_camera_frame:
+                      zed2i_imu_link:
+                        {}
+                      zed2i_left_camera_optical_frame:
+                        {}
+                    zed2i_right_camera_frame:
+                      zed2i_right_camera_optical_frame:
+                        {}
               odom:
                 {}
           Update Interval: 0
@@ -279,7 +514,7 @@ Visualization Manager:
             Durability Policy: Volatile
             History Policy: Keep Last
             Reliability Policy: Reliable
-            Value: /roar/global_planning/next_waypoint
+            Value: /roar/next_waypoint
           Value: true
         - Alpha: 1
           Buffer Length: 1
@@ -488,5 +723,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1848
-  X: 1992
+  X: 72
   Y: 27
