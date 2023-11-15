@@ -152,7 +152,7 @@ global_costmap:
     planner_frequency: 0.1
     
     RacePlanner:
-      waypoint_path: "./src/launches/launches/config/gokart/racing/waypoint.txt"
+      waypoint_path: "./src/launches/launches/config/gokart/racing/waypoints.txt"
 
 
 /roar/lifecycle_manager_global_planning:
@@ -171,22 +171,37 @@ global_costmap:
 roar:
   local_planner_manager_node:
     ros__parameters:
-      debug: false
-      manager_rate: 0.1
+      manager:
+        debug: false
+        loop_rate: 50.0
       use_sim_time: true
-      min_dist: 1.0
+      plugins: 
+        - "roar::planning::local::SimpleDistancePlanner"
+      
+      SimpleDistancePlanner:
+        next_waypoint_dist: 10.0
 lifecycle_manager_local_planning:
   ros__parameters:
     autostart: true
     use_sim_time: true
     node_names: ["/roar/local_planner_manager_node"]
 
+### behavior ### 
+/roar/behavior_planning_node:
+  ros__parameters:
+    debug: false
+    bt_xml_path: "./src/launches/launches/config/carla/racing/behavior_tree.xml"
+/roar/lifecycle_manager_behavior_planning_node:
+  ros__parameters:
+    node_names: ["/roar/behavior_planning_node"]
+    autostart: true
+
 ### Controller ###
 /roar/controller_manager:
   ros__parameters:
     use_sim_time: false
     manager:
-      debug: false
+      debug: true
       loop_rate: 30.0
     
     planner:
@@ -201,6 +216,8 @@ lifecycle_manager_local_planning:
     plugins:
       - "roar::control::LatPIDControllerPlugin"
       - "roar::control::DummyLonControllerPlugin"
+      - "roar::control::BehaviorControllerPlugin"
+
     
     lat_control:
       pid:
