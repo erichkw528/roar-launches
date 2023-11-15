@@ -10,12 +10,14 @@ from pathlib import Path
 from launch_ros.actions import Node
 from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration
-from launch.actions import DeclareLaunchArgument
+from launch.actions import DeclareLaunchArgument, SetEnvironmentVariable
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import LogInfo
 import time 
 from launch.actions import ExecuteProcess
+
+
 
 def generate_launch_description():
     ld = launch.LaunchDescription()
@@ -176,5 +178,14 @@ def generate_launch_description():
     assert mapping_launch_path.exists(), f"{mapping_launch_path} does not exist"
     mapping_launch = IncludeLaunchDescription(PythonLaunchDescriptionSource(mapping_launch_path.as_posix()), condition=IfCondition(LaunchConfiguration('mapping', default=False)))
     ld.add_action(mapping_launch)
+
+
+    ld.add_action(SetEnvironmentVariable(
+        'RCUTILS_CONSOLE_OUTPUT_FORMAT', '[{severity}]: {message}'
+    ))
+
+    ld.add_action(SetEnvironmentVariable(
+        'RCUTILS_COLORIZED_OUTPUT', '1'
+    ))
     return ld
     
