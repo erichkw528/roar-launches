@@ -13,7 +13,6 @@ Panels:
         - /Env representation1/LaserScan1/Topic1
         - /Env representation1/Costmap1
         - /Mapping1/Map1
-        - /Local Planning1
         - /Local Planning1/Best Path1
       Splitter Ratio: 0.39679715037345886
     Tree Height: 577
@@ -72,9 +71,9 @@ Visualization Manager:
           Enabled: true
           Invert Rainbow: false
           Max Color: 255; 255; 255
-          Max Intensity: 0.9941517114639282
+          Max Intensity: 0.9941499829292297
           Min Color: 0; 0; 0
-          Min Intensity: 0.3737771809101105
+          Min Intensity: 0.3848784863948822
           Name: FrontPointCloud2
           Position Transformer: XYZ
           Selectable: true
@@ -519,7 +518,7 @@ Visualization Manager:
             Durability Policy: Volatile
             History Policy: Keep Last
             Reliability Policy: Reliable
-            Value: /roar/global_planning/next_waypoint
+            Value: /roar/next_waypoint
           Value: true
         - Alpha: 1
           Buffer Length: 1
@@ -702,16 +701,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 42.57957458496094
+      Distance: 137.08560180664062
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 8.832544326782227
-        Y: 17.291086196899414
-        Z: -5.881279468536377
+        X: 25.821226119995117
+        Y: 71.20581817626953
+        Z: 41.57929229736328
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
