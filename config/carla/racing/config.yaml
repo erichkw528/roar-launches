@@ -243,13 +243,3 @@ lifecycle_manager_state_manager:
     autostart: true
     use_sim_time: true
     node_names: ["/roar/map_server"]
-
-/roar/behavior_planning_node:
-  ros__parameters:
-    debug: false
-    bt_xml_path: "./src/launches/launches/config/carla/parking/behavior_tree.xml"
-
-/roar/lifecycle_manager_behavior_planning_node:
-  ros__parameters:
-    node_names: ["/roar/behavior_planning_node"]
-    autostart: true
