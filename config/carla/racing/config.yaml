@@ -160,15 +160,31 @@ global_costmap:
 roar:
   local_planner_manager_node:
     ros__parameters:
-      debug: false
-      manager_rate: 0.1
+      manager:
+        debug: false
+        loop_rate: 50.0
       use_sim_time: true
-      min_dist: 5.0
+      plugins: 
+        - "roar::planning::local::SimpleDistancePlanner"
+      
+      SimpleDistancePlanner:
+        next_waypoint_dist: 10.0
 lifecycle_manager_local_planning:
   ros__parameters:
     autostart: true
     use_sim_time: true
     node_names: ["/roar/local_planner_manager_node"]
+
+### behavior ### 
+/roar/behavior_planning_node:
+  ros__parameters:
+    debug: false
+    bt_xml_path: "./src/launches/launches/config/carla/racing/behavior_tree.xml"
+/roar/lifecycle_manager_behavior_planning_node:
+  ros__parameters:
+    node_names: ["/roar/behavior_planning_node"]
+    autostart: true
+
 
 ### Controller ###
 /roar/controller_manager:
@@ -190,6 +206,7 @@ lifecycle_manager_local_planning:
     plugins:
       - "roar::control::LatPIDControllerPlugin"
       - "roar::control::DummyLonControllerPlugin"
+      - "roar::control::BehaviorControllerPlugin"
     
     lat_control:
       pid:
@@ -200,6 +217,8 @@ lifecycle_manager_local_planning:
         min_cmd: -30.0
         max_i: 10.0
         min_i: -10.0
+      min_dist: 5.0
+
 lifecycle_manager_controller:
   ros__parameters:
     autostart: true

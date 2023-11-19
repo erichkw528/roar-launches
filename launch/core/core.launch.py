@@ -100,5 +100,16 @@ def generate_launch_description():
     ld.add_action(state_manager)
     ld.add_action(LogInfo(msg=["State Manager launched"]))
 
+
+    """ Behavior Planner """
+
+    behavior_planner_launch_file_path: Path = (Path(get_package_share_directory("behavior_planning")) / "launch" / "behavior_planning.launch.py")
+    assert behavior_planner_launch_file_path.exists(), f"{behavior_planner_launch_file_path} does not exist"
+    behavior_planner = IncludeLaunchDescription(PythonLaunchDescriptionSource(behavior_planner_launch_file_path.as_posix()),
+        launch_arguments={
+            "params_file": params_file
+        }.items())
+    ld.add_action(behavior_planner)
+
     return ld
     
