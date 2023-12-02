@@ -154,7 +154,7 @@ global_costmap:
     planner_frequency: 0.1
     
     RacePlanner:
-      waypoint_path: "./src/launches/launches/config/carla/racing/waypoints.txt"
+      waypoint_path: "./src/launches/config/carla/racing/waypoints.txt"
 
 ### Local Planner ###
 roar:
@@ -179,7 +179,7 @@ lifecycle_manager_local_planning:
 /roar/behavior_planning_node:
   ros__parameters:
     debug: false
-    bt_xml_path: "./src/launches/launches/config/carla/racing/behavior_tree.xml"
+    bt_xml_path: "./src/launches/config/carla/racing/behavior_tree.xml"
 /roar/lifecycle_manager_behavior_planning_node:
   ros__parameters:
     node_names: ["/roar/behavior_planning_node"]
